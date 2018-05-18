@@ -1,0 +1,51 @@
+@import 'helper.css';
+@import 'font.css';
+
+body , .container-fluid {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+.behindText{
+  position: absolute;
+  z-index: 0;
+  color: rgba(143,143,143,.1);
+  height: 100vh;
+  height: 100%;
+  top:auto;
+  right: auto;
+}
+
+a.button{
+  text-transform: uppercase;
+  padding: 11px 20px;
+  width: 48%;
+  box-shadow: 0 2px 4px rgba(110,110,110,.5);
+  border: inherit;
+  cursor: pointer;
+  transition: all .15s ease-out;
+}
+
+a.button:hover{
+  color: inherit;
+  text-decoration: none;
+  transform: scale(1.02);
+  transition: all .2s ease-in;
+}
+
+p.skill{
+  background: #79A0CE;
+  padding: 10px;
+  color: white;
+}
+
+.s1{
+  opacity: .2;
+}
+.s2 {
+  opacity: .4
+}
+.s3{
+  opacity: .7
+}

@@ -1,0 +1,56 @@
+/*
+azure: #79A0CE;
+red: #D89292;
+*/
+.upcase{
+  text-transform: uppercase;
+}
+.white{
+  color: white;
+}
+.black{
+  color: black;
+}
+.azure {
+  color: #79A0CE;
+}
+.red{
+  color: #D89292;
+}
+.bgAzure{
+  background: #4A90E2;
+}
+.bgRed{
+  background: #D89292;
+}
+.grey{
+  color: rgba(143,143,143,1)
+}
+.greyopaque{
+  color: rgba(143,143,143,.5)
+}
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.m5{
+  margin: 5px;
+}
+.mt-50{
+  margin-top: 50px;
+}
+
+.mb-50{
+  margin-bottom: 50px;
+}
+
+.f-50{
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}

@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Biryani:200,600,900');
+
+.byrani{
+  font-family: 'Biryani', sans-serif;
+}
+.bold{
+  font-weight: bolder;
+}
+.light{
+  font-weight: lighter;
+}
