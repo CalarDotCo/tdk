@@ -1,114 +1,125 @@
 import React from 'react';
 import BehindText from './Components/behindText';
 import OpenedMenu from './Components/openedMenu';
+import Reusable from './Helpers/func.js';
 import { Link } from 'react-router-dom';
-// var animation = () => {
-//
-//   const nodelist = document.querySelectorAll('.skill')
-//   const divyArray = Array.prototype.slice.call(nodelist)
-//   console.log(divyArray);
-//   for (var i = 0; i < 4; i++) {
-//     console.log(divyArray[i])
-//   }
-//   setInterval(function(){console.log(animatable[0].classList[2]); }, 3000);
-// }
-// animation();
-const page = window.location.pathname;
-const isTeam = page !== "/team";
-console.log(isTeam , page);
+
+
 export default class PageComponent extends React.Component {
+
   constructor(props){
     super(props);
+
     this.state={
-      isRenderable:false
+      isRenderable:false,
+      isAnimated:true,
+      isOpenedMenu:false,
+      isWhatPage:undefined
     }
   }
 
-  componentDidMount(){
-    this.setState({isRenderable:true})
-    console.log(this.state);
+  componentWillMount(){
+    this.setState({isAnimated:true});
+    console.log('will mount' , this.props)
+    let node = document.getElementsByClassName('animated');
   }
-  componentDidUpdate(){
-    console.log(this.state);
+  componentWillUnmount(){
+    console.log('unmount')
+    const ifHomePage = this.props.match.url === '/team' ? 'block' : 'none';
+    console.log(ifHomePage);
+  }
+  componentWillReceiveProps(){
+    console.log('props' , this.props)
+    let _this = this;
+    setInterval(function(){
+      _this.setState({isAnimated:true})
+    } ,  1000)
+  }
+
+  toggleMenu = () => {
+    this.setState({ isOpenedMenu: !this.state.isOpenedMenu})
   }
    render(){
-    const ifRendered = this.state.isRenderable ? 'flex' : 'none';
+    const ifHomePage = this.props.match.url === '/' ? 'block' : 'none';
+    const {isAnimated} = this.state;
+    const animateable = Reusable(this.state.isAnimated, 'In' , 'Out');
+    const display = Reusable(this.state.isAnimated,'block','none');
     return(
 
       <header className="col-12">
-      <BehindText letters={this.props.BehindText} onChange={console.log('changed')}/>
-      {/* <OpenedMenu/> */}
-        <div className="row no-gutters d-flex justify-content-center h-100">
+        <BehindText letters={this.props.BehindText} isAnimatable={this.state.isAnimated} />
+          <OpenedMenu isOpened={this.state.isOpenedMenu}  toggle={this.toggleMenu.bind(this)} />
+            <div className="row no-gutters d-flex justify-content-center h-100">
 
-            <nav className="col-10 mt-50">
+                <nav className="col-10 mt-50">
 
-                <div className="row no-gutters ">
-                    <p className="col-11 col-sm-4 text-left upcase byrani bold grey f-50">Tdk-Factory</p>
-                    <p className="col-1 col-sm-4 m-0 p-0  text-center">
-                    <i className="fas fa-ellipsis-v grey"></i>
-                    </p>
-                    <div className="col-4 d-none d-sm-block">
-                      <div className="row no-gutters d-flex justify-content-end grey">
-                      <i className="fab fa-twitter m5"></i>
-                      <i className="fab fa-telegram m5"></i>
-                      <i className="fab fa-linkedin m5"></i>
-                      </div>
-                    </div>
-                </div>
-            </nav>
+                    <div className="row no-gutters ">
+                        <p className="col-11 col-sm-4 text-left upcase byrani bold grey f-50">Tdk-Factory</p>
+                        <p className="col-1 col-sm-4 m-0 p-0  text-center">
+                        <i className="fas fa-ellipsis-v grey" onClick={this.toggleMenu.bind(this)}></i>
+                        </p>
 
+                        <div className="col-4 d-none d-sm-block">
+                          <div className="row no-gutters d-flex justify-content-end grey">
 
+                            <i className="fab fa-twitter m5"></i>
+                            <i className="fab fa-telegram m5"></i>
+                            <i className="fab fa-linkedin m5"></i>
 
-            <div className="col-10 align-self-center align-items-center ">
-              <div className="row no-gutters d-flex align-items-center ">
-
-                <div className="col-10 col-sm-9 col-lg-6">
-                  <div className="row no-gutters">
-                    <h1 className="col-12 text-left azure bold ">{this.props.title}</h1>
-                    <p className="col-12  light grey">The society we have been living in is falling apart.<br/>Join the revolution and learn how to gain directly on your own with latest technologies.</p>
-                    <div className="w-100 mb-50"></div>
-                      <div className="col-12 col-sm-10 ">
-                          <div className="row no-gutters">
-                            <Link className="button azure bold text-center" to="/team">Text us</Link>
-                            <Link className="button ml-auto bgRed bold text-center white" to="/">Discover</Link>
                           </div>
+                        </div>
+                    </div>
+                </nav>
+
+
+
+              <div className="col-10 align-self-center align-items-center ">
+                <div className="row no-gutters d-flex align-items-center ">
+
+                  <div className="col-10 col-sm-10 col-lg-6">
+                    <div className="row no-gutters animated">
+                      <h1 className="col-12 text-left azure bold animated delay1 fadeInLeft " style={{display}} >{this.props.title}</h1>
+                      <p className="col-12  light grey animated delay2 fadeInLeft" style={{display}}>{this.props.description}</p>
+                      <div className="w-100 mb-50"></div>
+                        <div className="col-12 col-sm-10 ">
+                            <div className="row no-gutters">
+                              <Link className="button azure bold text-center animated delay3 fadeInLeft" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null } >Text us</Link>
+                              <Link className="button ml-auto bgRed bold text-center white animated delay3 fadeInLeft" style={{display}} to={this.props.ref2} onClick={() => this.props.match.path !== this.props.ref2 ? this.setState({isAnimated:false}) : null }>Discover</Link>
+                            </div>
+                        </div>
+                    </div>
+
+                  </div>
+
+                  <div className="d-none d-sm-block col-sm-2 col-lg-6">
+                      <div className="row no-gutters d-flex justify-content-end">
+                          <div className="col-12 col-sm-10 col-md-8 col-lg-6">
+
+                            <div className="row no-gutters text-center">
+
+                              <p className={["col-12 skill s1 animated delay3 fadeInRight"]} style={{display:ifHomePage}}>{this.state.isAnimated.toString()}</p>
+
+
+                            </div>
+
+                          </div>
+
                       </div>
                   </div>
 
                 </div>
+              </div>
 
-                <div className="d-none d-sm-block col-sm-3 col-lg-6">
-                    <div className="row no-gutters d-flex justify-content-end">
-                        <div className="col-auto">
-                          <div className="row no-gutters text-center" style={{display: ifRendered}}>
-                            <p className="col-12 skill s1 animated slideInLeft">Skill</p>
-                            <p className="col-12 skill s2 animated slideInRight">Skill</p>
-                            <p className="col-12 skill s3 animated slideInLeft">Skill</p>
-                            <p className="col-12 skill animated slideInRight">Skill</p>
-                            <p className="col-12 skill s3 animated slideInLeft">Skill</p>
-                            <p className="col-12 skill s2 animated slideInRight">Skill</p>
-                            <p className="col-12 skill s1 animated slideInLeft">Skill</p>
-
-                          </div>
-                        </div>
-
-
-                    </div>
+              <div className="col-10 align-self-end mb-50">
+                <div className="row no-gutters d-flex justify-content-end">
+                  <button>Support</button>
                 </div>
-
               </div>
-            </div>
-
-            <div className="col-10 align-self-end mb-50">
-              <div className="row no-gutters d-flex justify-content-end">
-                <button>Support</button>
-              </div>
-            </div>
 
 
 
 
-        </div>
+          </div>
       </header>
 
 

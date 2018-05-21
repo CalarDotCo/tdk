@@ -7,10 +7,10 @@ class App extends Component {
     super(props);
   }
   componentWillUnmount(){
-    console.log('ciao')
+    console.log('unmount')
   }
   componentDidMount(){
-    console.log('ciao')
+    console.log('mount')
   }
   render() {
     return (
@@ -18,20 +18,30 @@ class App extends Component {
         <div className="container-fluid">
           <div className="row no-gutters h-100">
 
-          <Switch>
-              <Route  path="/" render={() =>(
-                <Switch>
-                    <Route exact path="/" render={() =>(
-                      <PageComponent title="This revolution has your name"  BehindText={['T','D','K']}/>
+              <Switch>
 
-                    )}/>
-                    <Route exact path="/team" render={() =>(
-                      <PageComponent title="Tdk heros" BehindText={['T','E','A','M']}/>
-                    )}/>
-                </Switch>
+                  <Route  path="/" render={(props) =>(
 
-              )}/>
-          </Switch>
+                    <Switch>
+
+                        <Route exact path="/" render={(props) =>(
+                          <PageComponent  {...this.props} {...props} ref1="/team" ref2="/" title="Revolution has your name" description={["The society we have been living in is falling apart",<br/>,"Join the revolution and learn how to gain directly",<br/>,"on your own with latest technologies"]}  BehindText={['T','D','K']}/>
+                        )}/>
+
+                      <Route path="/team" render={(props) =>(
+                          <PageComponent  {...this.props} {...props} ref1="/team" ref2="/" title="Tdk heros" BehindText={['T','E','A','M']}/>
+                        )}/>
+
+                      <Redirect to="/" />
+
+                    </Switch>
+
+                  )}/>
+
+                <Redirect to="/" />
+
+              </Switch>
+
           </div>
         </div>
       </Router>
