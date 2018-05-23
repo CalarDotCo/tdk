@@ -12,9 +12,15 @@ body , .container-fluid {
   z-index: 0;
   color: rgba(143,143,143,.1);
   height: 100vh;
-  height: 100%;
-  top:auto;
-  right: auto;
+  width: 100%;
+  margin: 0 auto;
+}
+.behindText div div h1{
+  font-size: 120px;
+  margin: 0px;
+  height: auto;
+  padding: 0px;
+  font-family:'Helvetica' sans-serif;
 }
 
 a.button{

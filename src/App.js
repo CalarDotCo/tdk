@@ -29,7 +29,7 @@ class App extends Component {
                         )}/>
 
                       <Route path="/team" render={(props) =>(
-                          <PageComponent  {...this.props} {...props} ref1="/team" ref2="/" title="Tdk heros" BehindText={['T','E','A','M']}/>
+                          <PageComponent  {...this.props} {...props} isVertical={true} ref1="/team" ref2="/" title="Tdk heros" BehindText={['T','E','A','M']}/>
                         )}/>
 
                       <Redirect to="/" />

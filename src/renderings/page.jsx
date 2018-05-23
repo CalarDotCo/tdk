@@ -47,14 +47,14 @@ export default class PageComponent extends React.Component {
     return(
 
       <header className="col-12">
-        <BehindText letters={this.props.BehindText} isAnimatable={this.state.isAnimated} />
+        <BehindText letters={this.props.BehindText} isVertical={this.props.isVertical} isAnimatable={this.state.isAnimated} />
           <OpenedMenu isOpened={this.state.isOpenedMenu}  toggle={this.toggleMenu.bind(this)} />
             <div className="row no-gutters d-flex justify-content-center h-100">
 
                 <nav className="col-10 mt-50">
 
                     <div className="row no-gutters ">
-                        <p className="col-11 col-sm-4 text-left upcase byrani bold grey f-50">Tdk-Factory</p>
+                        <p className="col-11 col-sm-4 text-Up upcase byrani bold grey f-50">Tdk-Factory</p>
                         <p className="col-1 col-sm-4 m-0 p-0  text-center">
                         <i className="fas fa-ellipsis-v grey" onClick={this.toggleMenu.bind(this)}></i>
                         </p>
@@ -78,13 +78,13 @@ export default class PageComponent extends React.Component {
 
                   <div className="col-10 col-sm-10 col-lg-6">
                     <div className="row no-gutters animated">
-                      <h1 className="col-12 text-left azure bold animated delay1 fadeInLeft " style={{display}} >{this.props.title}</h1>
-                      <p className="col-12  light grey animated delay2 fadeInLeft" style={{display}}>{this.props.description}</p>
+                      <h1 className="col-12 text-Up azure bold animated delay1 fadeInUp " style={{display}} >{this.props.title}</h1>
+                      <p className="col-12  light grey animated delay2 fadeInUp" style={{display}}>{this.props.description}</p>
                       <div className="w-100 mb-50"></div>
                         <div className="col-12 col-sm-10 ">
                             <div className="row no-gutters">
-                              <Link className="button azure bold text-center animated delay3 fadeInLeft" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null } >Text us</Link>
-                              <Link className="button ml-auto bgRed bold text-center white animated delay3 fadeInLeft" style={{display}} to={this.props.ref2} onClick={() => this.props.match.path !== this.props.ref2 ? this.setState({isAnimated:false}) : null }>Discover</Link>
+                              <Link className="button azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null } >Text us</Link>
+                              <Link className="button ml-auto bgRed bold text-center white animated delay3 fadeInUp" style={{display}} to={this.props.ref2} onClick={() => this.props.match.path !== this.props.ref2 ? this.setState({isAnimated:false}) : null }>Discover</Link>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export default class PageComponent extends React.Component {
 
               <div className="col-10 align-self-end mb-50">
                 <div className="row no-gutters d-flex justify-content-end">
-                  <button>Support</button>
+                  <button className=" button btn btn-info">Support</button>
                 </div>
               </div>
 
