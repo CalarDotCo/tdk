@@ -1,6 +1,12 @@
 @import 'helper.css';
 @import 'font.css';
 
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
 body , .container-fluid {
   margin: 0;
   padding: 0;
@@ -75,6 +81,11 @@ p.skill{
   -o-animation-delay:1.85s;
   -moz-animation-delay:1.85s;
 }
+.delay4{
+  -webkit-animation-delay: 2s;
+  -o-animation-delay:2s;
+  -moz-animation-delay:2s;
+}
 .openedMenu{
   height: 88vh;
   margin-top: 12vh;
@@ -83,4 +94,19 @@ p.skill{
   overflow: hidden;
   background: white;
   width: 100%;
+}
+
+.menu a {
+  background: rgba(143,143,143,.1);
+  color: black;
+  width: 90%;
+  margin: 10px;
+  padding: 10px 20px;
+  transition: all .5s ease-out;
+}
+
+.menu a:hover{
+  background: rgba(143,143,143,.3);
+  transform: scale(50);
+  transition: all .3s ease-in;
 }

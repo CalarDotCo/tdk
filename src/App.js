@@ -36,7 +36,8 @@ class App extends Component {
                       <Route path="/area" render={(props) =>(
                           <PageComponent  {...this.props} {...props}
                             ref1="/text" btn="Discover"  ref2="/team"
-                            title="Tdk heros"
+                            title="We are worldwide"
+                            description={["Our team have been developing for 3 years and a half in blockchain projects",<br/>,"for customer from all over the world.",<br/>,""]}
                             rowsSpaceing={[10,10,6]}
                             BehindText={['A','R','E','A']}/>
                         )}/>

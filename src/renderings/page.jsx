@@ -4,12 +4,7 @@ import OpenedMenu from './Components/openedMenu';
 import Reusable from './Helpers/func.js';
 import { Link } from 'react-router-dom';
 
-var rows = (arg) => {
-  arg.map( r => {
-    return "col-" + r;
-  })
-  console.log(arg)
-}
+
 export default class PageComponent extends React.Component {
 
   constructor(props){
@@ -27,7 +22,6 @@ export default class PageComponent extends React.Component {
     this.setState({isAnimated:true});
     console.log('will mount' , this.props)
     let node = document.getElementsByClassName('animated');
-    console.log(rows(this.props.rowsSpaceing))
   }
   componentWillUnmount(){
     console.log('unmount')
@@ -42,8 +36,18 @@ export default class PageComponent extends React.Component {
     } ,  1000)
   }
 
+    rows = (arg) => {
+      arg.map( r => {
+        return "col-" + r;
+      })
+      console.log(arg)
+  }
+
   toggleMenu = () => {
     this.setState({ isOpenedMenu: !this.state.isOpenedMenu})
+  }
+  toggleWindow = () => {
+    this.setState({ isOpenedMenu: !this.state.isOpenedMenu , isAnimated:false})
   }
    render(){
     const ifHomePage = this.props.match.url === '/' ? 'block' : 'none';
@@ -54,7 +58,7 @@ export default class PageComponent extends React.Component {
 
       <header className="col-12">
         <BehindText letters={this.props.BehindText} isVertical={this.props.isVertical} isAnimatable={this.state.isAnimated} />
-          <OpenedMenu isOpened={this.state.isOpenedMenu}  toggle={this.toggleMenu.bind(this)} />
+          <OpenedMenu isOpened={this.state.isOpenedMenu}  toggle={this.toggleWindow} />
             <div className="row no-gutters d-flex justify-content-center h-100">
 
                 <nav className="col-10 mt-50">
@@ -82,9 +86,9 @@ export default class PageComponent extends React.Component {
               <div className="col-10 align-self-centerh h-75  align-items-center ">
                 <div className="row no-gutters d-flex align-self-center h-100 align-items-center ">
 
-                  <div className={[`${rows(this.props.rowsSpaceing)}`]}>
+                  <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
                     <div className="row no-gutters animated">
-                      <h1 className="col-12 text-Up azure bold animated delay1 text-center fadeInUp " style={{display}} >{this.props.title}</h1>
+                      <h1 className="col-12 text-Up azure bold animated delay1 text-left fadeInUp mb-50" style={{display}} >{this.props.title}</h1>
                       <p className="col-12  light grey animated delay2 fadeInUp" style={{display}}>{this.props.description}</p>
                       <div className="w-100 mb-50"></div>
                         <div className="col-12 col-sm-10 ">
@@ -97,13 +101,13 @@ export default class PageComponent extends React.Component {
 
                   </div>
 
-                  <div className="d-none d-sm-block col-sm-2 col-lg-6">
+                  <div className="d-none d-sm-block col-sm-2 col-lg-6 ml-auto">
                       <div className="row no-gutters d-flex justify-content-end">
-                          <div className="col-12 col-sm-10 col-md-8 col-lg-6">
+                          <div className="col-12 col-sm-10 col-md-8 col-lg-6 ml-auto">
 
                             <div className="row no-gutters text-center">
 
-                              <p className={["col-12 skill s1 animated delay3 fadeInRight"]} style={{display:ifHomePage}}>{this.state.isAnimated.toString()}</p>
+                              <p className={["col-12 skill s1 animated delay4 fadeInRight"]} style={{display:ifHomePage}}>{this.state.isAnimated.toString()}</p>
 
 
                             </div>
