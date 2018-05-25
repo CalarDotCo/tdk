@@ -4,7 +4,12 @@ import OpenedMenu from './Components/openedMenu';
 import Reusable from './Helpers/func.js';
 import { Link } from 'react-router-dom';
 
-
+var rows = (arg) => {
+  arg.map( r => {
+    return "col-" + r;
+  })
+  console.log(arg)
+}
 export default class PageComponent extends React.Component {
 
   constructor(props){
@@ -22,6 +27,7 @@ export default class PageComponent extends React.Component {
     this.setState({isAnimated:true});
     console.log('will mount' , this.props)
     let node = document.getElementsByClassName('animated');
+    console.log(rows(this.props.rowsSpaceing))
   }
   componentWillUnmount(){
     console.log('unmount')
@@ -73,18 +79,18 @@ export default class PageComponent extends React.Component {
 
 
 
-              <div className="col-10 align-self-center align-items-center ">
-                <div className="row no-gutters d-flex align-items-center ">
+              <div className="col-10 align-self-centerh h-75  align-items-center ">
+                <div className="row no-gutters d-flex align-self-center h-100 align-items-center ">
 
-                  <div className="col-10 col-sm-10 col-lg-6">
+                  <div className={[`${rows(this.props.rowsSpaceing)}`]}>
                     <div className="row no-gutters animated">
-                      <h1 className="col-12 text-Up azure bold animated delay1 fadeInUp " style={{display}} >{this.props.title}</h1>
+                      <h1 className="col-12 text-Up azure bold animated delay1 text-center fadeInUp " style={{display}} >{this.props.title}</h1>
                       <p className="col-12  light grey animated delay2 fadeInUp" style={{display}}>{this.props.description}</p>
                       <div className="w-100 mb-50"></div>
                         <div className="col-12 col-sm-10 ">
                             <div className="row no-gutters">
                               <Link className="button azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null } >Text us</Link>
-                              <Link className="button ml-auto bgRed bold text-center white animated delay3 fadeInUp" style={{display}} to={this.props.ref2} onClick={() => this.props.match.path !== this.props.ref2 ? this.setState({isAnimated:false}) : null }>Discover</Link>
+                              <Link className="button ml-auto bgRed bold text-center white animated delay3 fadeInUp" style={{display}} to={this.props.ref2} onClick={() => this.props.match.path !== this.props.ref2 ? this.setState({isAnimated:false}) : null }>{this.props.btn}</Link>
                             </div>
                         </div>
                     </div>
@@ -110,11 +116,6 @@ export default class PageComponent extends React.Component {
                 </div>
               </div>
 
-              <div className="col-10 align-self-end mb-50">
-                <div className="row no-gutters d-flex justify-content-end">
-                  <button className=" button btn btn-info">Support</button>
-                </div>
-              </div>
 
 
 

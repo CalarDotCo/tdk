@@ -25,12 +25,31 @@ class App extends Component {
                     <Switch>
 
                         <Route exact path="/" render={(props) =>(
-                          <PageComponent  {...this.props} {...props} ref1="/team" ref2="/" title="Revolution has your name" description={["The society we have been living in is falling apart",<br/>,"Join the revolution and learn how to gain directly",<br/>,"on your own with latest technologies"]}  BehindText={['T','D','K']}/>
+                          <PageComponent  {...this.props} {...props}
+                            ref1="/text" btn="Where" ref2="/area"
+                            title="Revolution has your name"
+                            description={["The society we have been living in is falling apart",<br/>,"Join the revolution and learn how to gain directly",<br/>,"on your own with latest technologies"]}
+                            rowsSpaceing={[10,10,6]}
+                            BehindText={['T','D','K']}/>
+                        )}/>
+
+                      <Route path="/area" render={(props) =>(
+                          <PageComponent  {...this.props} {...props}
+                            ref1="/text" btn="Discover"  ref2="/team"
+                            title="Tdk heros"
+                            rowsSpaceing={[10,10,6]}
+                            BehindText={['A','R','E','A']}/>
                         )}/>
 
                       <Route path="/team" render={(props) =>(
-                          <PageComponent  {...this.props} {...props} isVertical={true} ref1="/team" ref2="/" title="Tdk heros" BehindText={['T','E','A','M']}/>
-                        )}/>
+                            <PageComponent
+                                {...this.props} {...props}
+                                 isVertical={true}
+                                 ref1="/sendMessage" btn="" ref2="/"
+                                 title="We want to build smart cities"
+                                 rowsSpaceing={[12,12,12]}
+                                 BehindText={['V','I','S','I','O','N']}/>
+                          )}/>
 
                       <Redirect to="/" />
 
