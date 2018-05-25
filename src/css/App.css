@@ -110,3 +110,7 @@ p.skill{
   transform: scale(50);
   transition: all .3s ease-in;
 }
+
+.reTop{
+margin-top: -30px;
+}

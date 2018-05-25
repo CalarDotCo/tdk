@@ -18,6 +18,10 @@ export default class PageComponent extends React.Component {
     }
   }
 
+  layout = (arg) => {
+      arg.join
+   };
+
   componentWillMount(){
     this.setState({isAnimated:true});
     console.log('will mount' , this.props)
@@ -40,8 +44,9 @@ export default class PageComponent extends React.Component {
       arg.map( r => {
         return "col-" + r;
       })
-      console.log(arg)
   }
+
+
 
   toggleMenu = () => {
     this.setState({ isOpenedMenu: !this.state.isOpenedMenu})
@@ -54,6 +59,7 @@ export default class PageComponent extends React.Component {
     const {isAnimated} = this.state;
     const animateable = Reusable(this.state.isAnimated, 'In' , 'Out');
     const display = Reusable(this.state.isAnimated,'block','none');
+
     return(
 
       <header className="col-12">
@@ -86,13 +92,13 @@ export default class PageComponent extends React.Component {
               <div className="col-10 align-self-centerh h-75  align-items-center ">
                 <div className="row no-gutters d-flex align-self-center h-100 align-items-center ">
 
-                  <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+                  <div className={[`${this.props.subClasses.join(' ')}`]}>
                     <div className="row no-gutters animated">
-                      <h1 className="col-12 text-Up azure bold animated delay1 text-left fadeInUp mb-50" style={{display}} >{this.props.title}</h1>
+                      <h1 className="col-12 text-Up azure bold animated delay1  fadeInUp mb-50" style={{display}} >{this.props.title}</h1>
                       <p className="col-12  light grey animated delay2 fadeInUp" style={{display}}>{this.props.description}</p>
                       <div className="w-100 mb-50"></div>
                         <div className="col-12 col-sm-10 ">
-                            <div className="row no-gutters">
+                            <div className="row no-gutters" style={{display:`${!this.props.isVertical ? 'flex' : 'none'}`}}>
                               <Link className="button azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null } >Text us</Link>
                               <Link className="button ml-auto bgRed bold text-center white animated delay3 fadeInUp" style={{display}} to={this.props.ref2} onClick={() => this.props.match.path !== this.props.ref2 ? this.setState({isAnimated:false}) : null }>{this.props.btn}</Link>
                             </div>
