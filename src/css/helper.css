@@ -47,10 +47,21 @@ red: #D89292;
 .mb-50{
   margin-bottom: 50px;
 }
-
+.f-12{
+  font-size: 12px;
+}
 .f-50{
   font-size: 2em;
   margin: 0;
   padding: 0;
   line-height: 1;
+}
+.p5{
+  padding: 5px;
+}
+
+  .opaceable:hover{
+  filter: opacity(0.5);
+  cursor: pointer;
+  transition: all .1s ease-in;
 }

@@ -23,11 +23,14 @@ body , .container-fluid {
 }
 
 .background{
-  background-position: center;
+  background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
 }
-
+.bwhite{
+  filter: grayscale(50%) blur(0.5px);
+}
 .behindText div div h1{
   font-size: 120px;
   margin: 0px;
@@ -92,9 +95,14 @@ p.skill{
   -o-animation-delay:2s;
   -moz-animation-delay:2s;
 }
+.delay5{
+  -webkit-animation-delay: 2.5s;
+  -o-animation-delay:2.5s;
+  -moz-animation-delay:2.5s;
+}
 .openedMenu{
-  height: 88vh;
-  margin-top: 12vh;
+  height: 90vh;
+  margin-top: 10vh;
   position: absolute;
   z-index: 200;
   overflow: hidden;
@@ -121,6 +129,18 @@ p.skill{
   box-shadow: -1px 1px 1px black;
 }
 
-.reTop{
-margin-top: -30px;
+@media screen and (min-width: 330px) and (max-width: 500px)  {
+  .reTop{
+    margin-top: 65%;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 700px)  {
+  .reTop{
+    margin-top: 50%;
+  }
+}
+@media screen and (min-width: 701px) and (max-width: 1000px)  {
+  .reTop{
+    margin-top: 40%;
+  }
 }
