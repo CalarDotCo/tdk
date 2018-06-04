@@ -144,3 +144,20 @@ p.skill{
     margin-top: 40%;
   }
 }
+
+div .label {
+  box-shadow: 0 2px 4px rgba(110,110,110,.5);
+  padding: 20px;
+}
+  label input.input{
+  margin-bottom: 25px;
+}
+  label input {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(110,110,110,.5) !important;
+    border: 1px solid white;
+  }
+  *:focus{
+    outline: none;
+  }

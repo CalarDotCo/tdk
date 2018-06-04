@@ -20,7 +20,7 @@ const Member = (props) => {
                       </div>
 
                         <div className="col-4 col-sm-10  animated fadeInLeft delay5">
-                          <img src={props.icon[2]} alt="" className="img-fluid p5 opaceable" style={{minHeight:15, minWidth:15}}/>
+                          <img src={props.icon[2]} alt="" onClick={() => window.location.href=`/contact`} className="img-fluid p5 opaceable" style={{minHeight:15, minWidth:15}}/>
                         </div>
 
                       </div>

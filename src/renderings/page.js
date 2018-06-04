@@ -111,29 +111,59 @@ export default class PageComponent extends React.Component {
 
 
 
-              <div className="col-10">
-                <div className="row no-gutters d-flex justify-content-center">
+              <div className="col-11 col-sm-10 ">
+                <div className={["row no-gutters d-flex " + `${this.props.justify}`]}>
 
                   <div className={[`${this.props.subClasses.join(' ')}`]} style={{display}}>
                     <div className="row no-gutters animated d-flex">
-                      <h1 className="col-12  azure bold animated delay1 upcase fadeInUp mb-50">{this.props.title}</h1>
+                      <h1 className="col-12  azure bold animated delay1 upcase fadeInUp mb-50 ">{this.props.title}</h1>
                       <div className="w-100"></div>
-                        <p className="p col-12 animated fadeInUp delay2 grey mb-50">{this.props.description}</p>
 
-                        <div className="col-12 col-sm-10 " style={{display:`${!this.props.isVertical ? 'block' : 'none'}`}}>
+                        <p className="p col-12 animated fadeInUp delay2 grey mb-50 ">{this.props.description}</p>
+
+
+
+
+                        <div className="col-12 col-sm-8 col-md-6" style={{display:`${!this.props.isVertical ? 'block' : 'none'}`}}>
                             <div className="row no-gutters d-flex">
                               <Link className="button azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null }>Text us</Link>
                               <Link className="button ml-auto bgRed bold text-center white animated delay3 fadeInUp" style={{display}} to={this.props.ref2} onClick={() => this.props.match.path !== this.props.ref2 ? this.setState({isAnimated:false}) : null }>{this.props.btn}</Link>
                             </div>
                         </div>
 
-                        <div className="col-12 " style={{display:`${!this.props.bnt !== 'none' ? 'none' : 'block'}`}}>
-                            <div className="row no-gutters d-flex justify-content-center">
+                    </div>
+                      <div className="row no-gutters justify-content-center  animated delay3 fadeInUp" style={{display:`${ this.props.dbtn === 'none' ? 'flex' : 'none'}`}}>
+                      <div className="col-12 col-sm-10 col-md-8 col-lg-5  label mb-50 " style={{display:`${this.props.actionRequired ? "flex" : "none"}`}}>
+                        <div className="row no-gutters d-flex align-items-center justify-content-center ">
+                            <label className="col text-center">
+                              <div className="row no-gutters d-flex align-items-center justify-content-center text-left ">
+                                <input type="text" className="col-5 input" placeholder="Name"/>
+                                <div className="col-5"></div>
+                                <input type="text" className="col-5 input" placeholder="Surname"/>
+                                <div className="col-5"></div>
+                                <input type="text" className="col-5 input" placeholder="Email"/>
+                                <div className="col-5"></div>
+                              </div>
+                              <div className="row no-gutters d-flex  justify-content-center align-items-center  ">
+                              <p className="col-10 text-left">Message</p>
+                              <textarea name="" cols="" rows="" className="col-10"/>
+                              </div>
+                            </label>
+                          </div>
+                      </div>
+                      <div className="w-100"></div>
+                        <div className="col-12 col-sm-6 " >
+                            <div className="row no-gutters  justify-content-center" style={{display:`${this.props.actionRequired  ? "none" : "flex"}`}}>
                               <Link className="button col-10 col-sm-4 azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null }>{this.props.btn}</Link>
                             </div>
+                            <div className="row no-gutters  justify-content-center" style={{display:`${this.props.actionRequired  ? "flex" : "none"}`}}>
+                              <Link className="button col-10 col-sm-4 azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={(e) => {
+                                e.preventDefault();
+                                console.log('prevented')
+                               }}>{this.props.btn}</Link>
+                            </div>
                         </div>
-                    </div>
-
+                      </div>
                   </div>
 
                   <div className="d-none d-sm-block col-sm-2 col-lg-6 ml-auto">
