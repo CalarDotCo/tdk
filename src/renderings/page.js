@@ -3,6 +3,7 @@ import BehindText from './Components/behindText';
 import OpenedMenu from './Components/openedMenu';
 import Reusable from './Helpers/func';
 import Extra from './Components/extra';
+import Form from './Components/form'
 import { Link } from 'react-router-dom';
 import calarco from '../images/fd.png'
 import david from '../images/david.png'
@@ -58,7 +59,7 @@ export default class PageComponent extends React.Component {
   }
 
     componentWillReceiveProps(){
-      console.log('props' , this.props)
+      console.log('props' , this.props , this.state)
       let _this = this;
       setInterval(function(){
         _this.setState({isAnimated:true})
@@ -132,36 +133,14 @@ export default class PageComponent extends React.Component {
                         </div>
 
                     </div>
-                      <div className="row no-gutters justify-content-center  animated delay3 fadeInUp" style={{display:`${ this.props.dbtn === 'none' ? 'flex' : 'none'}`}}>
-                      <div className="col-12 col-sm-10 col-md-8 col-lg-5  label mb-50 " style={{display:`${this.props.actionRequired ? "flex" : "none"}`}}>
-                        <div className="row no-gutters d-flex align-items-center justify-content-center ">
-                            <label className="col text-center">
-                              <div className="row no-gutters d-flex align-items-center justify-content-center text-left ">
-                                <input type="text" className="col-5 input" placeholder="Name"/>
-                                <div className="col-5"></div>
-                                <input type="text" className="col-5 input" placeholder="Surname"/>
-                                <div className="col-5"></div>
-                                <input type="text" className="col-5 input" placeholder="Email"/>
-                                <div className="col-5"></div>
-                              </div>
-                              <div className="row no-gutters d-flex  justify-content-center align-items-center  ">
-                              <p className="col-10 text-left">Message</p>
-                              <textarea name="" cols="" rows="" className="col-10"/>
-                              </div>
-                            </label>
-                          </div>
-                      </div>
+                      <div className="row no-gutters justify-content-center animated delay3 fadeInUp" style={{display:`${ this.props.dbtn === 'none' ? 'flex' : 'none'}`}}>
+                      <Form actionRequired={this.props.actionRequired} {...this.props}/>
                       <div className="w-100"></div>
                         <div className="col-12 col-sm-6 " >
                             <div className="row no-gutters  justify-content-center" style={{display:`${this.props.actionRequired  ? "none" : "flex"}`}}>
                               <Link className="button col-10 col-sm-4 azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={() => this.props.match.path !== this.props.ref1 ? this.setState({isAnimated:false}) : null }>{this.props.btn}</Link>
                             </div>
-                            <div className="row no-gutters  justify-content-center" style={{display:`${this.props.actionRequired  ? "flex" : "none"}`}}>
-                              <Link className="button col-10 col-sm-4 azure bold text-center animated delay3 fadeInUp" style={{display}} to={this.props.ref1} onClick={(e) => {
-                                e.preventDefault();
-                                console.log('prevented')
-                               }}>{this.props.btn}</Link>
-                            </div>
+
                         </div>
                       </div>
                   </div>
