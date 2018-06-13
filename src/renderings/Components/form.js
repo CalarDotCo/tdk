@@ -2,23 +2,29 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { database } from '../../func/firebase';
 
+
 export default class Form extends React.Component {
 
   constructor () {
     super();
     this.state = {
-      name: '',
-      surname: '',
-      email:'',
-      message:'',
-      countable:4,
-      error:''
+      form:{
+        name:'',
+        surname:'',
+        email:'',
+        message:'',
+      },
+      submitable:true,
+      countable:4
     }
 
   }
 
   handleChange = (evt) => {
-    this.setState({ [evt.target.name]: evt.target.value });
+    this.setState({ form:{
+      ...this.state.form,
+      [evt.target.name]:evt.target.value
+    }})
   }
 
   componentDidMount(){
@@ -27,37 +33,37 @@ export default class Form extends React.Component {
     })
   }
 
-  submitForm = () => {
-    const countable = []
-    const state = this.state;
-    const array = [];
-    Object.values(state).map( a => array.push(a));
-    array.pop();
-    array.map( (a ,id) => {
-      if(a.length === 0){
-        countable.push(id);
-        this.setState({ countable: countable.length})
-      }
-      // else{
-      //   this.setState({error:'Sending . . .'})
-      //   database.ref('/Contacts').push({
-      //     Name: this.state.name + ' ' +
-      //      this.state.surname ,
-      //      Email: this.state.email ,
-      //      Text: this.state.message
-      //   })
-      // }
-    });
-
-   if(Number(this.state.countable) > 0) {
-     this.setState({error:'All input must be filled'})
-     console.log(this.state.countable)
-   } else {
-     this.setState({error:'Sending'})
-   }
-   console.log(this.state.countable)
-
+  componentWillReceiveProps(){
+    console.log('propsssss');
   }
+
+  checkForm = () => {
+
+    const formArray = new Array();
+
+      Object.values(this.state.form).map( (a,id)=> {
+
+          if(a.length === 0){
+            formArray.push(a)
+          }else{
+            formArray.slice(id)
+          }
+        });
+
+        this.setState({countable: formArray.length})
+        return true;
+  }
+
+
+        submitForm = () => {
+
+          let condition = (this.state.submitable === true && this.state.countable === 0);
+            if(condition){
+              this.setState({flash: 'Sending'})
+            }else{
+              this.setState({flash: 'An error Occured'})
+            }
+        }
 
   render () {
     return (
@@ -71,7 +77,7 @@ export default class Form extends React.Component {
             <label className="col-12 text-center">
 
               <span className="row no-gutters d-flex align-items-center justify-content-center text-left ">
-                  <input type="text" className="col-5 input" name="name" placeholder="Name" onChange={this.handleChange}/>
+                  <input type="text" className="col-5 input" input="form" name="name" placeholder="Name" onChange={this.handleChange}/>
                 <span className="col-5"></span>
                   <input type="text" className="col-5 input" name="surname" placeholder="Surname" onChange={this.handleChange}/>
                 <span className="col-5"></span>
@@ -84,7 +90,7 @@ export default class Form extends React.Component {
                 <span className="row no-gutters d-flex  justify-content-center align-items-center  ">
                   <p className="col-10 text-left">Message</p>
                     <textarea name="message" onChange={this.handleChange} cols="" rows="" className="col-10"/>
-                  <p className="col-12 text-center black">{[this.state.error , this.state.countable]}</p>
+                  <p className="col-12 text-center black">{[this.state.flash , this.state.countable]}</p>
                 </span>
 
               </span>

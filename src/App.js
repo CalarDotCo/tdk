@@ -38,10 +38,11 @@ class App extends Component {
                         <Route path="/contact" render={(props) =>(
                             <PageComponent  {...this.props} {...props}
                               isVertical={true}
-                              ref1="/" btn="Send" ref2="/" dbtn="none" actionRequired
+                              ref1="/contact" btn="Discover"  ref2="/vision" dbtn="none"
                               justify="justify-content-center"
                               title="Let's get in touch"
                               form="true"
+                              actionRequired
                               subClasses={['col-12','reTop','text-center']}
                               BehindText={['G','E','T','-','I','N']}/>
                           )}/>

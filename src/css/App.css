@@ -160,4 +160,6 @@ div .label {
   }
   *:focus{
     outline: none;
+    border-bottom: 2px solid black;
+    transition: all .5s none;
   }
